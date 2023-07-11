@@ -200,7 +200,7 @@ namespace nsgFunc
                                         sizeOfListItems = 0;
                                     }
 
-                                    log.LogDebug("Adding Record  [" + denormalizedRecord + "]");
+                                    log.LogDebug("Adding Record  [" + denormalizedRecord.ToString() + "]");
 
                                     outgoingList.Add(denormalizedRecord);
                                     sizeOfListItems += 1;
