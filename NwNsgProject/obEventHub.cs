@@ -43,8 +43,12 @@ namespace nsgFunc
         {
             foreach (var messageList in denormalizedRecords(newClientContent, null, log))
             {
+                log.LogDebug("messageList contains [" + messageList.Count + "] items");
+
                 var outgoingRecords = new OutgoingRecords();
                 outgoingRecords.records = messageList;
+
+                log.LogDebug("outgoingRecords contains [" + outgoingRecords.records.Count + "] items");
 
                 var outgoingJson = JsonConvert.SerializeObject(outgoingRecords, new JsonSerializerSettings
                 {
