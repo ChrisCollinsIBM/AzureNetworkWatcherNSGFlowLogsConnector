@@ -100,6 +100,36 @@ class DenormalizedRecord
         }
     }
 
+    public override string ToString()
+    {
+        StringBuilder sb = StringBuilderPool.Allocate();
+        sb.Append("DenormalizedRecord :: ");
+        sb.Append("time[" + time + "] ");
+        sb.Append("category[" + category + "] ");
+        sb.Append("operationName[" + operationName + "] ");
+        sb.Append("resourceId[" + resourceId + "] ");
+        sb.Append("version[" + version + "] ");
+        sb.Append("deviceExtId[" + deviceExtId + "] ");
+        sb.Append("nsgRuleName[" + nsgRuleName + "] ");
+        sb.Append("mac[" + mac + "] ");
+        sb.Append("startTime[" + startTime + "] ");
+        sb.Append("sourceAddress[" + sourceAddress + "] ");
+        sb.Append("destinationAddress[" + destinationAddress + "] ");
+        sb.Append("sourcePort[" + sourcePort + "] ");
+        sb.Append("destinationPort[" + destinationPort + "] ");
+        sb.Append("transportProtocol[" + transportProtocol + "] ");
+        sb.Append("deviceDirection[" + deviceDirection + "] ");
+        sb.Append("deviceAction[" + deviceAction + "] ");
+        sb.Append("flowState[" + flowState + "] ");
+        sb.Append("packetsStoD[" + packetsStoD + "] ");
+        sb.Append("bytesStoD[" + bytesStoD + "] ");
+        sb.Append("packetsDtoS[" + packetsDtoS + "] ");
+        sb.Append("bytesDtoS[" + bytesDtoS + "] ");
+
+        return sb.ToString();
+    }
+
+
     private string MakeMAC()
     {
         StringBuilder sb = StringBuilderPool.Allocate();

@@ -164,6 +164,8 @@ namespace nsgFunc
 
                 foreach (var record in logs.records)
                 {
+                    log.LogDebug("Processing Record [" + record.ToString() + "]");
+
                     float version = record.properties.Version;
 
                     foreach (var outerFlow in record.properties.flows)
@@ -200,7 +202,7 @@ namespace nsgFunc
                                         sizeOfListItems = 0;
                                     }
 
-                                    log.LogDebug("Adding Record  [" + denormalizedRecord.ToString() + "]");
+                                    log.LogDebug("Adding Record [" + denormalizedRecord.ToString() + "]");
 
                                     outgoingList.Add(denormalizedRecord);
                                     sizeOfListItems += 1;
