@@ -51,6 +51,8 @@ namespace nsgFunc
                     NullValueHandling = NullValueHandling.Ignore
                 });
 
+                log.LogDebug("outgoingJson [" + outgoingJson.ToString() + "]");
+
                 yield return outgoingJson;
             }
         }

@@ -199,6 +199,9 @@ namespace nsgFunc
                                         outgoingList.Clear();
                                         sizeOfListItems = 0;
                                     }
+
+                                    log.LogDebug("Adding Record  [" + denormalizedRecord + "]");
+
                                     outgoingList.Add(denormalizedRecord);
                                     sizeOfListItems += 1;
 
