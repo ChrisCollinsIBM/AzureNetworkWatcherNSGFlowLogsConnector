@@ -184,13 +184,13 @@ namespace nsgFunc
                                     innerFlow.mac,
                                     tuple);
 
-                                var sizeOfDenormalizedRecord = denormalizedRecord.GetSizeOfJSONObject(); 
+                                var sizeOfDenormalizedRecord = denormalizedRecord.GetSizeOfJSONObject();
 
-                                //for Event hub binding fork  -- start
-                                // Event hub basic message size is 256KB and the 'if' statement below ensures that list does not exceed size this size for Eventhub
 
                                 string outputBinding = Util.GetEnvironmentVariable("outputBinding");
 
+                                //for Event hub binding fork  -- start
+                                // Event hub basic message size is 256KB and the 'if' statement below ensures that list does not exceed size this size for Eventhub
                                 if (outputBinding == "eventhub")
                                 {
                                     if (sizeOfListItems > 120) // this will chunk below 256KB : this is ideal sample message size. Feel free to go maximum till 150 : smaller values will create lot of outbound connections.
@@ -203,18 +203,20 @@ namespace nsgFunc
                                     sizeOfListItems += 1;
 
                                 }
-
                                 //for Event hub binding fork  -- end
-                                //other output bindings
 
-                                else if (sizeOfListItems + sizeOfDenormalizedRecord > MAXTRANSMISSIONSIZE + 20)
+                                //other output bindings
+                                else
                                 {
-                                    yield return outgoingList;
-                                    outgoingList.Clear();
-                                    sizeOfListItems = 0;
+                                    if (sizeOfListItems + sizeOfDenormalizedRecord > MAXTRANSMISSIONSIZE + 20)
+                                    {
+                                        yield return outgoingList;
+                                        outgoingList.Clear();
+                                        sizeOfListItems = 0;
+                                    }
+                                    outgoingList.Add(denormalizedRecord);
+                                    sizeOfListItems += sizeOfDenormalizedRecord;
                                 }
-                                outgoingList.Add(denormalizedRecord);
-                                sizeOfListItems += sizeOfDenormalizedRecord;
                             }
                         }
                     }
